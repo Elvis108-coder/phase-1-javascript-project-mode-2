@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let pets = [];
     let favorites = [];
 
-    // Fetch pets from API or db.json
     fetch("http://localhost:3000/pets")
         .then(res => res.json())
         .then(data => {
@@ -25,20 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h3>${pet.name}</h3>
                 <p>Breed: ${pet.breed}</p>
                 <p>Age: ${pet.age}</p>
-                <button onclick="addToFavorites(${pet.id})">❤️ Favorite</button>
             `;
+
+            const favButton = document.createElement("button");
+            favButton.textContent = "❤️ Favorite";
+            favButton.addEventListener("click", () => addToFavorites(pet));
+
+            petCard.appendChild(favButton);
             petList.appendChild(petCard);
         });
     }
 
-    window.addToFavorites = (id) => {
-        const pet = pets.find(p => p.id === id);
-        if (!favorites.includes(pet)) {
+    function addToFavorites(pet) {
+        if (!favorites.some(fav => fav.id === pet.id)) {
             favorites.push(pet);
             showPopup(`${pet.name} added to favorites!`);
             displayFavorites();
         }
-    };
+    }
 
     function displayFavorites() {
         favoriteList.innerHTML = "";
@@ -50,17 +53,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h3>${pet.name}</h3>
                 <p>Breed: ${pet.breed}</p>
                 <p>Age: ${pet.age}</p>
-                <button class="remove" onclick="removeFromFavorites(${pet.id})">❌ Remove</button>
             `;
+
+            const removeButton = document.createElement("button");
+            removeButton.classList.add("remove");
+            removeButton.textContent = "❌ Remove";
+            removeButton.addEventListener("click", () => removeFromFavorites(pet.id));
+
+            favCard.appendChild(removeButton);
             favoriteList.appendChild(favCard);
         });
     }
 
-    window.removeFromFavorites = (id) => {
+    function removeFromFavorites(id) {
         favorites = favorites.filter(p => p.id !== id);
         showPopup("Removed from favorites.");
         displayFavorites();
-    };
+    }
 
     searchBar.addEventListener("input", (e) => {
         const searchText = e.target.value.toLowerCase();
