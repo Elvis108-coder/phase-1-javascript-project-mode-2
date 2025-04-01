@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p>Breed: ${pet.breed}</p>
                 <p>Age: ${pet.age}</p>
             `;
+            petCard.addEventListener("mouseover", () => {
+                petCard.style.transform = "scale(1.05)";
+                petCard.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)";
+            });
 
             const favButton = document.createElement("button");
             favButton.textContent = "❤️ Favorite";
