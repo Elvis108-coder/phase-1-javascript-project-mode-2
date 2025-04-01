@@ -40,3 +40,14 @@ function addToFavorites(pet) {
             displayFavorites();
         }
     }
+    function displayFavorites() {
+        favoriteList.innerHTML = "";
+        favorites.forEach(pet => {
+            const favCard = document.createElement("div");
+            favCard.className = "pet-card";
+            favCard.innerHTML = `
+                <img src="${pet.image}" alt="${pet.name}">
+                <h3>${pet.name}</h3>
+                <p>Breed: ${pet.breed}</p>
+                <p>Age: ${pet.age}</p>
+            `;
