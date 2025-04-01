@@ -65,3 +65,8 @@ function addToFavorites(pet) {
         showPopup("Removed from favorites.");
         displayFavorites();
     }
+    searchBar.addEventListener("input", (e) => {
+        const searchText = e.target.value.toLowerCase();
+        const filteredPets = pets.filter(pet => pet.breed.toLowerCase().includes(searchText));
+        displayPets(filteredPets);
+    });
