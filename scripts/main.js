@@ -5,12 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("popup");
 
     let pets = [];
-    let favorites = [];fetch("http://localhost:3000/pets")
-    .then(res => res.json())
+    let favorites = [];
+    fetch("http://localhost:3000/pets")
+    .then(res => {
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+    })
     .then(data => {
         pets = data;
         displayPets(pets);
-    });
+    })
+    .catch(error => console.error("Error fetching pets:", error));
+
     function displayPets(petsArray) {
         petList.innerHTML = "";
         petsArray.forEach(pet => {
