@@ -28,3 +28,10 @@ input:focus {
     border-color: #feb47b; 
     box-shadow: 0 0 10px rgba(255, 94, 77, 0.6); 
 }
+#pet-list, #favorite-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
