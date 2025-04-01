@@ -60,3 +60,8 @@ function addToFavorites(pet) {
             favoriteList.appendChild(favCard);
         });
     }
+    function removeFromFavorites(id) {
+        favorites = favorites.filter(p => p.id !== id);
+        showPopup("Removed from favorites.");
+        displayFavorites();
+    }
