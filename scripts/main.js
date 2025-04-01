@@ -6,56 +6,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let pets = [];
     let favorites = [];
+
     fetch("http://localhost:3000/pets")
-    .then(res => {
-        if (!res.ok) {
-            throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-    })
-    .then(data => {
-        pets = data;
-        displayPets(pets);
-    })
-    .catch(error => console.error("Error fetching pets:", error));
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to fetch pets");
+            return res.json();
+        })
+        .then(data => {
+            pets = data;
+            displayPets(pets);
+        })
+        .catch(err => console.error("Error fetching pets:", err));
 
     function displayPets(petsArray) {
         petList.innerHTML = "";
         petsArray.forEach(pet => {
             const petCard = document.createElement("div");
             petCard.className = "pet-card";
+            petCard.setAttribute("data-id", pet.id);
             petCard.innerHTML = `
                 <img src="${pet.image}" alt="${pet.name}">
                 <h3>${pet.name}</h3>
                 <p>Breed: ${pet.breed}</p>
                 <p>Age: ${pet.age}</p>
             `;
-            petCard.addEventListener("mouseover", () => {
-                petCard.style.transform = "scale(1.05)";
-                petCard.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)";
-            });
-            petCard.addEventListener("mouseout", () => {
-                petCard.style.transform = "scale(1)";
-                petCard.style.boxShadow = "0 5px 10px rgba(0, 0, 0, 0.1)";
-            });
 
             const favButton = document.createElement("button");
             favButton.textContent = "❤️ Favorite";
             favButton.addEventListener("click", () => addToFavorites(pet));
 
+            const adoptButton = document.createElement("button");
+            adoptButton.textContent = pet.adopted ? "Adopted" : "Adopt Me";
+            adoptButton.classList.add("adopt-button");
+            adoptButton.disabled = pet.adopted;
+            adoptButton.addEventListener("click", () => adoptPet(pet, adoptButton));
+
             petCard.appendChild(favButton);
+            petCard.appendChild(adoptButton);
             petList.appendChild(petCard);
         });
     }
 
+    function adoptPet(pet, button) {
+        console.log(`Attempting to adopt pet ID: ${pet.id}`);
+        fetch(`http://localhost:3000/pets/${pet.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ adopted: true }),
+        })
+            .then(res => {
+                console.log(`Response status: ${res.status}`);
+                if (!res.ok) {
+                    return res.text().then(text => {
+                        throw new Error(`Failed to adopt pet. Status: ${res.status}, Response: ${text}`);
+                    });
+                }
+                return res.json();
+            })
+            .then(updatedPet => {
+                console.log("Pet adopted successfully:", updatedPet);
+                pet.adopted = true;
+                button.textContent = "Adopted";
+                button.disabled = true;
+                showPopup(`${pet.name} has been adopted!`);
+                displayPets(pets);
+            })
+            .catch(err => {
+                console.error("Error adopting pet:", err);
+                showPopup("Failed to adopt pet. Try again.");
+            });
+    }
 
-function addToFavorites(pet) {
+    function addToFavorites(pet) {
         if (!favorites.some(fav => fav.id === pet.id)) {
             favorites.push(pet);
             showPopup(`${pet.name} added to favorites!`);
             displayFavorites();
         }
     }
+
     function displayFavorites() {
         favoriteList.innerHTML = "";
         favorites.forEach(pet => {
@@ -76,20 +107,22 @@ function addToFavorites(pet) {
             favoriteList.appendChild(favCard);
         });
     }
+
     function removeFromFavorites(id) {
         favorites = favorites.filter(p => p.id !== id);
         showPopup("Removed from favorites.");
         displayFavorites();
     }
+
     searchBar.addEventListener("input", (e) => {
         const searchText = e.target.value.toLowerCase();
         const filteredPets = pets.filter(pet => pet.breed.toLowerCase().includes(searchText));
         displayPets(filteredPets);
     });
+
     function showPopup(message) {
         popup.textContent = message;
         popup.classList.remove("hidden");
         setTimeout(() => popup.classList.add("hidden"), 2000);
     }
 });
-

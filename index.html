@@ -4,22 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Adoption</title>
-    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
     <header>
         <h1>Pet Adoption Center</h1>
-        <input type="text" id="searchBar" placeholder="Search pets by breed...">
+        <input type="text" id="searchBar" placeholder="Search pets by breed..." aria-label="Search pets by breed">
     </header>
 
     <main>
-        <section id="pet-list"></section>
-        <h2>Favorites</h2>
-        <section id="favorite-list"></section>
+        <section>
+            <h2 id="availablePetsHeading">Available Pets</h2>
+            <div id="pet-list" aria-live="polite"></div>
+        </section>
+        
+        <section>
+            <h2>Favorites</h2>
+            <div id="favorite-list"></div>
+        </section>
     </main>
 
-    <div id="popup" class="hidden"></div>
+    <div id="popup" class="hidden" role="alert" aria-live="assertive"></div>
 
-    <script src="scripts/main.js"></script>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any inquiries, feel free to reach out to us.</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:biggeelvo831@gmail.com">biggeelvo831@gmail.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+254796411682">+254 796 411 682</a></li>
+            <li><strong>Address:</strong> Harambee Avenue, Nairobi, Kenya</li>
+            <li><strong>P.O. Box:</strong> 30746-00100</li>
+        </ul>
+    </section>
+    
+    <section id="privacy-policy">
+        <h2>Privacy Policy</h2>
+        <p>Your privacy is important to us. We do not share your personal information with third parties.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Pet Adoption Center. <a href="#contact">Contact Us</a> | <a href="#privacy-policy">Privacy Policy</a></p>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
 </body>
 </html>

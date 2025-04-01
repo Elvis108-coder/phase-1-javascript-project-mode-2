@@ -1,0 +1,77 @@
+{
+  "pets": [
+    {
+      "id": "1",
+      "name": "Buddy",
+      "breed": "Golden Retriever",
+      "Sprayed": "Yes",
+      "age": "3 years",
+      "image": "assets/pexels-brett-sayles-1322182.jpg",
+      "adopted": true
+    },
+    {
+      "id": "2",
+      "name": "Luna",
+      "breed": "Siberian Husky",
+      "Sex": "Female",
+      "Sprayed": "Yes",
+      "age": "2 years",
+      "image": "assets/pexels-ilargian-faus-763704-1629777.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Milo",
+      "breed": "Beagle",
+      "Sex": "Male",
+      "Sprayed": "Yes",
+      "age": "4 years",
+      "image": "assets/pexels-leah-newhouse-50725-540524.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Charlie",
+      "breed": "Labrador Retriever",
+      "Sex": "Male",
+      "Sprayed": "Yes",
+      "age": "5 years",
+      "image": "assets/pexels-melly-1954515.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Bailey",
+      "breed": "Cocker Spaniel",
+      "Sex": "Female",
+      "Sprayed": "Yes",
+      "age": "3 years",
+      "image": "assets/pexels-nisakorn-k-10459-54386.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Daisy",
+      "breed": "Shih Tzu",
+      "Sex": "Female",
+      "Sprayed": "Yes",
+      "age": "2 years",
+      "image": "assets/pexels-brett-sayles-1322182.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Rocky",
+      "breed": "Rottweiler",
+      "Sex": "Female",
+      "age": "6 years",
+      "Sprayed": "Yes",
+      "image": "assets/pexels-stergerz-803766.jpg",
+      "adopted": true
+    },
+    {
+      "id": "8",
+      "name": "Coco",
+      "breed": "French Bulldog",
+      "Sex": "Male",
+      "Sprayed": "Yes",
+      "age": "1 year",
+      "image": "assets/pexels-viktoriab-1078090.jpg"
+    }
+  ]
+}
