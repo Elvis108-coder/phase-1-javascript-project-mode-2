@@ -51,3 +51,12 @@ function addToFavorites(pet) {
                 <p>Breed: ${pet.breed}</p>
                 <p>Age: ${pet.age}</p>
             `;
+            const removeButton = document.createElement("button");
+            removeButton.classList.add("remove");
+            removeButton.textContent = "❌ Remove";
+            removeButton.addEventListener("click", () => removeFromFavorites(pet.id));
+
+            favCard.appendChild(removeButton);
+            favoriteList.appendChild(favCard);
+        });
+    }
