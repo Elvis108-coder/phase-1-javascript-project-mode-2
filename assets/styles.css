@@ -56,11 +56,34 @@ input:focus {
 button {
     margin-top: 15px;
     padding: 12px 20px;
-    background-color: #28a745; /* Green button for 'Adopt' */
+    background-color: #28a745; 
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 25px; 
     font-size: 16px;
     transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #218838; 
+}
+button.remove {
+    background-color: #dc3545; 
+}
+button.remove:hover {
+    background-color: #c82333; 
+}.hidden {
+    display: none; 
+}
+
+#popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333; 
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    animation: slideUp 0.5s ease-in-out; 
 }
