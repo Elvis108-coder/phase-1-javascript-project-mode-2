@@ -35,3 +35,12 @@ input:focus {
     gap: 30px;
     padding: 20px;
 }
+.pet-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px; /* Rounded corners */
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

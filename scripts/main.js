@@ -84,3 +84,4 @@ function addToFavorites(pet) {
         setTimeout(() => popup.classList.add("hidden"), 2000);
     }
 });
+
