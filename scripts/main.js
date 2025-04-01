@@ -32,3 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+function addToFavorites(pet) {
+        if (!favorites.some(fav => fav.id === pet.id)) {
+            favorites.push(pet);
+            showPopup(`${pet.name} added to favorites!`);
+            displayFavorites();
+        }
+    }
