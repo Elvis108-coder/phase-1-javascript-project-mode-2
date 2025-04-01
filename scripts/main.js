@@ -23,3 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p>Age: ${pet.age}</p>
             `;
 
+            const favButton = document.createElement("button");
+            favButton.textContent = "❤️ Favorite";
+            favButton.addEventListener("click", () => addToFavorites(pet));
+
+            petCard.appendChild(favButton);
+            petList.appendChild(petCard);
+        });
+    }
+
