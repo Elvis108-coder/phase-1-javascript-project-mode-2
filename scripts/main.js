@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 petCard.style.transform = "scale(1.05)";
                 petCard.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)";
             });
+            petCard.addEventListener("mouseout", () => {
+                petCard.style.transform = "scale(1)";
+                petCard.style.boxShadow = "0 5px 10px rgba(0, 0, 0, 0.1)";
+            });
 
             const favButton = document.createElement("button");
             favButton.textContent = "❤️ Favorite";
