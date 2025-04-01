@@ -78,3 +78,9 @@ function addToFavorites(pet) {
         const filteredPets = pets.filter(pet => pet.breed.toLowerCase().includes(searchText));
         displayPets(filteredPets);
     });
+    function showPopup(message) {
+        popup.textContent = message;
+        popup.classList.remove("hidden");
+        setTimeout(() => popup.classList.add("hidden"), 2000);
+    }
+});
