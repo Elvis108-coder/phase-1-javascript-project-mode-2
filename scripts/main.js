@@ -7,13 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let pets = [];
     let favorites = [];
 
-    fetch("http://localhost:3000/pets")
+
+    fetch("/db.json")
         .then(res => {
             if (!res.ok) throw new Error("Failed to fetch pets");
             return res.json();
         })
         .then(data => {
-            pets = data;
+            pets = data.pets;  
             displayPets(pets);
         })
         .catch(err => console.error("Error fetching pets:", err));
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function adoptPet(pet, button) {
         console.log(`Attempting to adopt pet ID: ${pet.id}`);
-        fetch(`http://localhost:3000/pets/${pet.id}`, {
+        fetch(`/db.json`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
